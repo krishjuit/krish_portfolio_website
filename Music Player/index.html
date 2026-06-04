@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music player</title>
+        <link rel="stylesheet" href="styel.css">
+        <script src="https://kit.fontawesome.com/d516bb9078.js" crossorigin="anonymous"></script>
+        <style>
+            .file-upload-container {
+                margin: 15px 0;
+            }
+            .upload-btn {
+                display: inline-block;
+                background: #f53192;
+                color: #fff;
+                padding: 10px 22px;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(245, 49, 146, 0.3);
+            }
+            .upload-btn:hover {
+                background: #d41f77;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(245, 49, 146, 0.4);
+            }
+            .upload-btn i {
+                margin-right: 6px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="music-player">
+                <nav>
+                    <div class="circle">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </div>
+                    <div class="circle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </nav>
+                <img src="thumbnail.png" class="song-img">
+                <h1>GoodBye</h1>
+                <p>Lekhak</p>
+                
+                <div class="file-upload-container">
+                    <label for="music-upload" class="upload-btn">
+                        <i class="fa-solid fa-upload"></i> Upload Song
+                    </label>
+                    <input type="file" id="music-upload" accept="audio/*" style="display: none;">
+                </div>
+
+                <audio id="song">
+                    <source src="goodbye.mp3" type="audio/mpeg">
+                </audio>
+                <input type="range" id="progress" min="0" max="100" value="0">
+                <div class="controls">
+                    <div><i class="fa-solid fa-backward"></i></div>
+                    <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                    <div><i class="fa-solid fa-forward"></i></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            let progress = document.getElementById('progress');
+            let song = document.getElementById("song");
+            let ctrlIcon = document.getElementById("ctrlIcon");
+            const musicUpload = document.getElementById("music-upload");
+            const songName = document.querySelector("h1");
+            const songArtist = document.querySelector("p");
+
+            song.onloadedmetadata = function(){
+                progress.max = song.duration;
+                progress.value = song.currentTime;
+            }
+
+            // Sync current play time
+            setInterval(() => {
+                if (!song.paused) {
+                    progress.value = song.currentTime;
+                }
+            }, 500);
+
+            // Handle local file selection
+            musicUpload.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    // Create local object URL for the audio file
+                    const fileUrl = URL.createObjectURL(file);
+                    song.src = fileUrl;
+                    
+                    // Update metadata
+                    const title = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+                    songName.textContent = title;
+                    songArtist.textContent = "Local Audio File";
+                    
+                    // Reload and play
+                    song.load();
+                    song.play();
+                    ctrlIcon.classList.add("fa-pause");
+                    ctrlIcon.classList.remove("fa-play");
+                }
+            });
+
+            function playPause() {
+                if (ctrlIcon.classList.contains("fa-pause")) {
+                    song.pause();
+                    ctrlIcon.classList.remove("fa-pause");
+                    ctrlIcon.classList.add("fa-play");
+                } else {
+                    song.play();
+                    ctrlIcon.classList.add("fa-pause");
+                    ctrlIcon.classList.remove("fa-play");
+                }
+            }
+
+            progress.onchange = function(){
+                song.currentTime = progress.value;
+                if (song.paused) {
+                    song.play();
+                    ctrlIcon.classList.add("fa-pause");
+                    ctrlIcon.classList.remove("fa-play");
+                }
+            }
+        </script>
+    </body>
+</html>

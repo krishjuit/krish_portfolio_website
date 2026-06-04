@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password Strength & Generator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="password-card">
+                <h1 class="card-title">Password Security Tool</h1>
+                
+                <!-- Input / Checking Area -->
+                <div class="input-box">
+                    <input type="text" id="password" placeholder="Type or generate a password">
+                    <button class="action-btn" id="copy-btn" title="Copy to clipboard">
+                        <!-- SVG Copy Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                    <p class="strength-message" id="message">Strength: <span id="strength">-</span></p>
+                </div>
+
+                <!-- Generator Controls Area -->
+                <div class="generator-section">
+                    <h3 class="section-label">Customize & Generate</h3>
+                    
+                    <!-- Length Slider -->
+                    <div class="range-container">
+                        <div class="range-label-container">
+                            <span>Password Length</span>
+                            <span id="length-val">12</span>
+                        </div>
+                        <input type="range" id="length-slider" class="range-slider" min="6" max="30" value="12">
+                    </div>
+
+                    <!-- Rules Checkboxes -->
+                    <div class="checkbox-grid">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="check-upper" checked>
+                            Uppercase (A-Z)
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="check-lower" checked>
+                            Lowercase (a-z)
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="check-numbers" checked>
+                            Numbers (0-9)
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="check-symbols" checked>
+                            Symbols (!@#...)
+                        </label>
+                    </div>
+
+                    <!-- Generate Trigger -->
+                    <button class="generate-btn" id="generate-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        Generate Secure Password
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const passInput = document.getElementById("password");
+            const msg = document.getElementById("message");
+            const strText = document.getElementById("strength");
+            
+            const lengthSlider = document.getElementById("length-slider");
+            const lengthVal = document.getElementById("length-val");
+            
+            const checkUpper = document.getElementById("check-upper");
+            const checkLower = document.getElementById("check-lower");
+            const checkNumbers = document.getElementById("check-numbers");
+            const checkSymbols = document.getElementById("check-symbols");
+            
+            const generateBtn = document.getElementById("generate-btn");
+            const copyBtn = document.getElementById("copy-btn");
+
+            // Character pools
+            const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const numChars = "0123456789";
+            const symChars = "!@#$%^&*()_+-={}[]|\\:;\"'<>,.?/";
+
+            // Update range slider value label
+            lengthSlider.addEventListener("input", () => {
+                lengthVal.textContent = lengthSlider.value;
+            });
+
+            // Calculate Password Strength in real time
+            function checkPasswordStrength(password) {
+                if (password.length === 0) {
+                    strText.innerHTML = "-";
+                    strText.style.color = "#888";
+                    passInput.style.borderColor = "#444";
+                    return;
+                }
+
+                let score = 0;
+                
+                // Length check
+                if (password.length >= 8) score++;
+                if (password.length >= 14) score++;
+
+                // Character type checks
+                if (/[a-z]/.test(password)) score++;
+                if (/[A-Z]/.test(password)) score++;
+                if (/[0-9]/.test(password)) score++;
+                if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+                // Display states
+                if (score <= 2 || password.length < 6) {
+                    strText.innerHTML = "Weak 🔴";
+                    strText.style.color = "#ff5925";
+                    passInput.style.borderColor = "#ff5925";
+                } else if (score === 3 || score === 4) {
+                    strText.innerHTML = "Medium 🟡";
+                    strText.style.color = "yellow";
+                    passInput.style.borderColor = "yellow";
+                } else if (score === 5) {
+                    strText.innerHTML = "Strong 🟢";
+                    strText.style.color = "#26d730";
+                    passInput.style.borderColor = "#26d730";
+                } else {
+                    strText.innerHTML = "Very Strong 🔥";
+                    strText.style.color = "#00f2fe";
+                    passInput.style.borderColor = "#00f2fe";
+                }
+            }
+
+            // Real-time strength checking as the user types
+            passInput.addEventListener("input", () => {
+                checkPasswordStrength(passInput.value);
+            });
+
+            // Generate Password based on requirements
+            function generatePassword() {
+                let pool = "";
+                let guaranteed = [];
+
+                if (checkUpper.checked) {
+                    pool += upperChars;
+                    guaranteed.push(upperChars[Math.floor(Math.random() * upperChars.length)]);
+                }
+                if (checkLower.checked) {
+                    pool += lowerChars;
+                    guaranteed.push(lowerChars[Math.floor(Math.random() * lowerChars.length)]);
+                }
+                if (checkNumbers.checked) {
+                    pool += numChars;
+                    guaranteed.push(numChars[Math.floor(Math.random() * numChars.length)]);
+                }
+                if (checkSymbols.checked) {
+                    pool += symChars;
+                    guaranteed.push(symChars[Math.floor(Math.random() * symChars.length)]);
+                }
+
+                // Fallback if no checkboxes are marked
+                if (pool === "") {
+                    alert("Please select at least one character type!");
+                    return;
+                }
+
+                const length = parseInt(lengthSlider.value);
+                let password = "";
+
+                // Add guaranteed characters first to satisfy rules
+                password += guaranteed.join("");
+
+                // Fill the rest of the password length
+                while (password.length < length) {
+                    password += pool[Math.floor(Math.random() * pool.length)];
+                }
+
+                // Shuffle the characters for extra randomness
+                password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
+                // Display
+                passInput.value = password;
+                checkPasswordStrength(password);
+            }
+
+            generateBtn.addEventListener("click", generatePassword);
+
+            // Copy to clipboard with confirmation
+            copyBtn.addEventListener("click", () => {
+                if (passInput.value === "") return;
+                
+                passInput.select();
+                document.execCommand("copy");
+
+                // Temporary hover confirmation
+                const originalTitle = copyBtn.getAttribute("title");
+                copyBtn.setAttribute("title", "Copied! ✓");
+                copyBtn.style.color = "#26d730";
+                
+                setTimeout(() => {
+                    copyBtn.setAttribute("title", originalTitle);
+                    copyBtn.style.color = "#888";
+                }, 1500);
+            });
+
+            // Run initial check
+            checkPasswordStrength(passInput.value);
+        </script>
+    </body>
+</html>

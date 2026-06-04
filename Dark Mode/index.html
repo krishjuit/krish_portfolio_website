@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dark mode</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="content"></div>
+        <img src="moon.png" id="icon">
+        <h1>
+
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis, ipsam quod dolore tenetur vel eos in consequuntur accusantium numquam aliquid odio iure repellendus! Atque est maxime beatae corrupti unde iure!
+        </h1>
+        
+        <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae vero adipisci neque praesentium iure, ad illo hic maxime, ducimus exercitationem culpa. Accusantium sequi non asperiores dignissimos? Tempore deleniti earum rerum.</h2>
+        <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia doloremque corrupti quam placeat vitae fuga voluptatibus minus quo? Deserunt, dicta? Dignissimos dicta at temporibus error, saepe odit odio! Sint, magni?</h3>
+    </body>
+    <script>
+        var icon=document.getElementById("icon");
+        
+        // if(mode.contains("dark-theme"))
+        // {
+        //     document.body.classList.toggle("dark-theme");
+        //     if(document.body.classList.contains("dark-theme")){
+        //         icon.src="sun.png";
+        //     }else
+        //     {
+        //         icon.src="moon.png";
+        //     }
+        //     localStorage.setItem("mode",document.body.classList);
+        // }
+    
+        
+    
+    
+    
+        icon.onclick=function(){
+            document.body.classList.toggle("dark-theme");
+            if(document.body.classList.contains("dark-theme")){
+                icon.src="sun.png";
+            }else
+            {
+                icon.src="moon.png";
+            }
+            localStorage.setItem("mode",document.body.classList);
+        }
+        let mode=localStorage.getItem("mode");
+        window.onload=function(){
+                if(mode=="dark-theme")
+                {
+                    document.body.classList.toggle("dark-theme");
+                    if(document.body.classList.contains("dark-theme")){
+                        icon.src="sun.png";
+                    }else
+                    {
+                        icon.src="moon.png";
+                    }
+                    localStorage.setItem("mode",document.body.classList);
+                }
+            }
+        // console.log(mode);
+        
+    </script>
+</html>

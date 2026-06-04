@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Agarwal | Portfolio & Digital Resume</title>
+    <meta name="description" content="Personal portfolio of Krish Agarwal, full-stack developer. Featuring Zomato Clone, Illumine 2026 Next.js portal, and a suite of 25 frontend component applications.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            950: '#09090b',
+                            900: '#18181b',
+                            800: '#27272a',
+                            700: '#3f3f46',
+                            400: '#a1a1aa',
+                            100: '#f4f4f5',
+                        },
+                        accent: {
+                            emerald: '#10b981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Modern minimalist grid background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(39, 39, 42, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(39, 39, 42, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .spinner {
+            border: 3px solid rgba(16, 185, 129, 0.1);
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans selection:bg-accent-emerald selection:text-zinc-950 transition-colors duration-300">
+
+    <!-- Grid Background Layer -->
+    <div class="fixed inset-0 grid-bg pointer-events-none z-[-2]"></div>
+    <!-- Subtle linear top gradient -->
+    <div class="fixed top-0 left-0 w-full h-[500px] bg-gradient-to-b from-zinc-900/50 to-transparent pointer-events-none z-[-1]"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full h-16 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80 z-50">
+        <div class="max-w-5xl h-full mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="text-sm font-bold tracking-tight text-zinc-100 flex items-center gap-2 hover:text-accent-emerald transition-colors">
+                <span class="w-2 h-2 rounded-full bg-accent-emerald"></span> Krish Agarwal
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8 text-xs font-medium text-zinc-400">
+                <a href="#about" class="hover:text-zinc-100 transition-colors">About</a>
+                <a href="#projects" class="hover:text-zinc-100 transition-colors">Projects</a>
+                <a href="#skills" class="hover:text-zinc-100 transition-colors">Skills</a>
+                <a href="#timeline" class="hover:text-zinc-100 transition-colors">Timeline</a>
+                <a href="#leadership" class="hover:text-zinc-100 transition-colors">Leadership</a>
+                <a href="#contact" class="hover:text-zinc-100 transition-colors">Contact</a>
+            </nav>
+            
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden sm:inline-flex px-3 py-1.5 rounded bg-zinc-900 border border-zinc-800 text-xs font-bold text-zinc-300 hover:text-white hover:border-zinc-700 hover:scale-[1.01] transition-all">
+                    Get in touch
+                </a>
+                
+                <!-- Mobile Navigation Trigger -->
+                <button id="mobile-menu-toggle" class="md:hidden w-8 h-8 rounded border border-zinc-850 flex items-center justify-center text-zinc-400 hover:text-white transition-all" aria-label="Toggle navigation">
+                    <i data-lucide="menu" id="menu-icon" class="w-4 h-4 block"></i>
+                    <i data-lucide="x" id="close-icon" class="w-4 h-4 hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-zinc-950 border-b border-zinc-800 py-6 px-6 flex flex-col gap-4 text-sm font-medium shadow-xl">
+            <a href="#about" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">About</a>
+            <a href="#projects" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">Projects</a>
+            <a href="#skills" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">Skills</a>
+            <a href="#timeline" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">Timeline</a>
+            <a href="#leadership" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">Leadership</a>
+            <a href="#contact" class="mobile-nav-link text-zinc-400 hover:text-zinc-100">Contact</a>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pt-24 pb-20">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-[60vh] flex flex-col justify-center py-12 border-b border-zinc-900">
+            <div class="max-w-2xl">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-100 mb-4 leading-tight">
+                    Full-Stack Developer, GenAI Learner & CP Enthusiast
+                </h1>
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-8 font-medium">
+                    I am Krish. I build React/Next.js architectures and micro-utilities, solve algorithmic problems (600+ solved on LeetCode, Max 1250+ on Codeforces), and study Generative AI and LLM prompt patterns.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#projects" class="px-5 py-2.5 rounded bg-zinc-100 text-zinc-950 font-bold text-xs hover:bg-zinc-200 transition-all flex items-center gap-1.5">
+                        View Primary Projects <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <a href="https://github.com/krishjuit" target="_blank" class="px-5 py-2.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 font-bold text-xs hover:bg-zinc-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-16 border-b border-zinc-900">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-accent-emerald">Overview</h2>
+                    <h3 class="text-lg font-bold text-zinc-100 mt-1">Design & Logic</h3>
+                </div>
+                <div class="md:col-span-2 text-zinc-400 text-sm leading-relaxed space-y-4">
+                    <p>
+                        I focus on building clean code systems and reliable web layouts. In my work, I prioritize backend schema normalization, role-based security, state syncing, and semantic structures.
+                    </p>
+                    <p>
+                        My background includes developing complex React 19 dashboards and custom Express APIs, alongside standard UI utility widgets built using pure vanilla JavaScript to master DOM interactions and browser performance.
+                    </p>
+                    
+                    <!-- Problem Solving & Stats Cards -->
+                    <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://leetcode.com/u/krish_5_agarwal/" target="_blank" class="bg-zinc-900/40 border border-zinc-850 rounded p-3.5 flex items-center justify-between hover:border-zinc-800 transition-all">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-yellow-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-11.75 11.75a1.379 1.379 0 0 0 0 1.953l1.1 1.1a1.379 1.379 0 0 0 1.951 0L15.185 3.86a1.379 1.379 0 0 0 0-1.953l-1.1-1.1A1.375 1.375 0 0 0 13.483 0zm-3.003 12.44a1.37 1.37 0 0 0-.96.402l-8.5 8.5a1.379 1.379 0 0 0 0 1.953l1.1 1.1a1.379 1.379 0 0 0 1.951 0l8.5-8.5a1.378 1.378 0 0 0-.962-2.455zm6.5 0a1.37 1.37 0 0 0-.96.402l-8.5 8.5a1.379 1.379 0 0 0 0 1.953l1.1 1.1a1.379 1.379 0 0 0 1.951 0l8.5-8.5a1.378 1.378 0 0 0-.962-2.455z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="text-xs font-bold text-zinc-200">LeetCode Profile</h4>
+                                    <p class="text-zinc-500 text-[10px]">600+ Problems Solved</p>
+                                </div>
+                            </div>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 text-zinc-650"></i>
+                        </a>
+                        <a href="https://codeforces.com/profile/krish5932n" target="_blank" class="bg-zinc-900/40 border border-zinc-850 rounded p-3.5 flex items-center justify-between hover:border-zinc-800 transition-all">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-sky-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.5 7.5a1.5 1.5 0 1 1 3 0v13.5a1.5 1.5 0 1 1-3 0V7.5zm6-4.5a1.5 1.5 0 1 1 3 0v18a1.5 1.5 0 1 1-3 0V3zM16.5 12a1.5 1.5 0 1 1 3 0v9a1.5 1.5 0 1 1-3 0v-9z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="text-xs font-bold text-zinc-200">Codeforces Profile</h4>
+                                    <p class="text-zinc-500 text-[10px]">1250+ Max Rating</p>
+                                </div>
+                            </div>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 text-zinc-650"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIMARY PROJECTS SECTION -->
+        <section id="projects" class="py-16 border-b border-zinc-900">
+            <div class="mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-accent-emerald">Selected Works</span>
+                <h2 class="text-2xl font-extrabold mt-1 text-zinc-100">Primary Projects</h2>
+                <p class="text-zinc-400 text-xs mt-1">A focused catalog representing my core full-stack platforms and utility collections.</p>
+            </div>
+
+            <!-- PROJECTS GRID -->
+            <div class="space-y-12">
+                
+                <!-- PROJECT 1: ZOMATO CLONE -->
+                <div class="bg-zinc-900/30 border border-zinc-850 rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start hover:border-zinc-800 transition-all">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded text-accent-emerald border border-emerald-500/25">Full-Stack</span>
+                            <span class="text-[10px] font-mono text-zinc-500">React 19, MongoDB, Node.js</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-zinc-100">Zomato Clone (Tomato)</h3>
+                        <p class="text-zinc-400 text-xs leading-relaxed mt-2 mb-6">
+                            Developed a multi-vendor food delivery platform integrating Stripe API checkout mechanisms. Engineered automated order status logs and secure token storage with JWT-based role-based access control (RBAC). Implemented dynamic merchant dashboards analyzing revenue charts and top-selling meals using custom MongoDB aggregation pipelines.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-xs text-zinc-400">
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Stripe checkout & order history logs</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>JWT-based RBAC custom middlewares</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>MongoDB aggregate coupon engines</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Responsive multi-vendor analytics charts</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://tomato-krish-it.vercel.app" target="_blank" class="px-4 py-2 rounded bg-zinc-100 text-zinc-950 font-bold text-xs hover:bg-zinc-200 transition-all flex items-center gap-1.5">
+                                Live Platform <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                            <a href="https://github.com/krishjuit/Zomato_Clone" target="_blank" class="px-4 py-2 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold text-xs hover:text-white transition-all flex items-center gap-1.5">
+                                Source Code <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: ILLUMINE 2026 -->
+                <div class="bg-zinc-900/30 border border-zinc-850 rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start hover:border-zinc-800 transition-all">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-blue-500/10 px-2.5 py-1 rounded text-blue-400 border border-blue-500/25">Frontend Portal</span>
+                            <span class="text-[10px] font-mono text-zinc-500">Next.js 16, TS, Tailwind v4</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-zinc-100">Illumine 2026 IT Reunion</h3>
+                        <p class="text-zinc-400 text-xs leading-relaxed mt-2 mb-6">
+                            Developed the official web portal for the IT Department Silver Jubilee Reunion at Jadavpur University. Built using Next.js 16, React 19, TypeScript, and Tailwind CSS v4. Delivers a sci-fi-themed HUD user interface integrating interactive timetables, a dynamic search-by-batch alumni database, and automated contact mailers.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-xs text-zinc-400">
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Next.js 16 SSG routes and structures</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Sci-Fi themed HUD components</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Batch-filtered dynamic alumni directory</span>
+                            </div>
+                            <div class="flex gap-2 items-start">
+                                <span class="text-accent-emerald font-bold">✓</span>
+                                <span>Automated contact/invite email workers</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://illumine-clone.vercel.app/" target="_blank" class="px-4 py-2 rounded bg-zinc-100 text-zinc-950 font-bold text-xs hover:bg-zinc-200 transition-all flex items-center gap-1.5">
+                                Live Portal <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                            <a href="https://github.com/krishjuit/ILLUMINE_CLONE" target="_blank" class="px-4 py-2 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold text-xs hover:text-white transition-all flex items-center gap-1.5">
+                                Source Code <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: VANILLA COMPONENTS LABS (BUNDLE CARD) -->
+                <div class="bg-zinc-900/30 border border-zinc-850 rounded-lg p-6 md:p-8 hover:border-zinc-800 transition-all">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 px-2.5 py-1 rounded text-purple-400 border border-purple-500/25">Component Suite</span>
+                            <span class="text-[10px] font-mono text-zinc-500">HTML5, CSS3, ES6 JavaScript</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-zinc-100">Vanilla JS UI & Utility Suite</h3>
+                        <p class="text-zinc-400 text-xs leading-relaxed mt-2 mb-6">
+                            A bundled suite of 25 custom frontend tools and micro-applications created to master the fundamentals of DOM manipulation, event loops, media streams, and browser API integrations. Includes audio players, security checkers, text speech synthesizers, calculators, calendars, and responsive widgets.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 text-xs text-zinc-400">
+                            <div class="flex gap-2 items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                                <span>7 Utility Tools (Stopwatch, QR Generator, Text-to-Voice)</span>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                                <span>5 Interactive Apps (Music Player, Notes, Weather App)</span>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                                <span>13 UI & Input Components (Complexity checkers, dropdown menus)</span>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                                <span>All items fully runnable inside live test frame previews</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button id="toggle-labs-btn" class="px-5 py-2.5 rounded bg-zinc-100 text-zinc-950 font-bold text-xs hover:bg-zinc-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                                Browse Component Suite (25 Apps) <i data-lucide="chevron-down" id="drawer-arrow" class="w-4 h-4 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- COLLAPSABLE DRAWER FOR THE 25 MINI-PROJECTS -->
+                    <div id="labs-drawer" class="hidden mt-8 pt-8 border-t border-zinc-800/80 transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                            <div class="relative flex-grow max-w-sm">
+                                <i data-lucide="search" class="w-4 h-4 text-zinc-500 absolute left-3 top-3.5"></i>
+                                <input type="text" id="labs-search" placeholder="Search 25 utilities..." class="w-full bg-zinc-950 border border-zinc-800 rounded px-9 py-2 text-xs text-zinc-300 placeholder-zinc-650 focus:border-accent-emerald focus:ring-1 focus:ring-accent-emerald transition-all outline-none">
+                            </div>
+                            <!-- Category Buttons -->
+                            <div class="flex gap-2 text-[10px] font-semibold overflow-x-auto pb-1">
+                                <button class="labs-filter active bg-zinc-800 border border-zinc-700 px-3 py-1.5 rounded text-zinc-200 hover:text-white" data-labs-filter="all">All</button>
+                                <button class="labs-filter bg-zinc-900 border border-zinc-850 px-3 py-1.5 rounded text-zinc-400 hover:text-white" data-labs-filter="utility">Utilities</button>
+                                <button class="labs-filter bg-zinc-900 border border-zinc-850 px-3 py-1.5 rounded text-zinc-400 hover:text-white" data-labs-filter="app">Apps</button>
+                                <button class="labs-filter bg-zinc-900 border border-zinc-850 px-3 py-1.5 rounded text-zinc-400 hover:text-white" data-labs-filter="ui">UI Components</button>
+                            </div>
+                        </div>
+
+                        <!-- Mini Projects Grid -->
+                        <div id="labs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <!-- Injected dynamically by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-16 border-b border-zinc-900">
+            <!-- Part 1: Tech Stack Logos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-accent-emerald">Tech Stack</h2>
+                    <h3 class="text-lg font-bold text-zinc-100 mt-1">Technologies & Tools</h3>
+                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">
+                        Languages, frameworks, and APIs leveraged across my full-stack developments and components library.
+                    </p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    
+                    <!-- React -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-sky-400 shrink-0" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="0" cy="0" r="2" fill="currentColor"/>
+                            <g stroke="currentColor" stroke-width="1" fill="none">
+                                <ellipse rx="10" ry="4.5" />
+                                <ellipse rx="10" ry="4.5" transform="rotate(60)" />
+                                <ellipse rx="10" ry="4.5" transform="rotate(120)" />
+                            </g>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">React 19</span>
+                    </div>
+
+                    <!-- Next.js -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-zinc-100 shrink-0" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="next-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
+                                <circle cx="90" cy="90" r="90" fill="black"/>
+                            </mask>
+                            <g mask="url(#next-mask)">
+                                <circle cx="90" cy="90" r="90" fill="currentColor"/>
+                                <path d="M149.508 157.52L69.142 54H54v72h12.142V68.031l68.036 89.489a89.65 89.65 0 0015.33-20z" fill="black"/>
+                                <rect x="115" y="54" width="12" height="72" fill="black"/>
+                            </g>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Next.js 16</span>
+                    </div>
+
+                    <!-- TypeScript -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="8" fill="#3178C6"/>
+                            <text x="32" y="72" fill="white" font-size="34" font-family="sans-serif" font-weight="bold">TS</text>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">TypeScript</span>
+                    </div>
+
+                    <!-- Node.js -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-green-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7v10l10 5 10-5V7z" />
+                            <path d="M12 22V12" />
+                            <path d="M2 7l10 5 10-5" />
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Node.js</span>
+                    </div>
+
+                    <!-- Express.js -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="16" fill="#18181b" stroke="#27272a" stroke-width="6"/>
+                            <text x="18" y="62" fill="white" font-size="30" font-family="sans-serif" font-weight="bold">ex</text>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Express.js</span>
+                    </div>
+
+                    <!-- MongoDB -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-green-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C8 6 8 11 12 22C16 11 16 6 12 2Z"/>
+                            <path d="M12 8C11 10 11 12 12 15C13 12 13 10 12 8Z"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">MongoDB</span>
+                    </div>
+
+                    <!-- Tailwind CSS -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-sky-400 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 .587c-3.668 0-6.732 2.637-8.324 6.223 2.193-.852 4.093-.728 5.617.382 1.341.977 2.13 2.502 3.864 2.502 3.668 0 6.732-2.637 8.324-6.223-2.193.852-4.093.728-5.617-.382-1.341-.977-2.13-2.502-3.864-2.502zm0 10c-3.668 0-6.732 2.637-8.324 6.223 2.193-.852 4.093-.728 5.617.382 1.341.977 2.13 2.502 3.864 2.502 3.668 0 6.732-2.637 8.324-6.223-2.193.852-4.093.728-5.617-.382-1.341-.977-2.13-2.502-3.864-2.502z"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Tailwind CSS</span>
+                    </div>
+
+                    <!-- Stripe API -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-indigo-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.962 2c-2.454 0-4.81.932-6.529 2.548-1.503 1.41-2.222 3.328-2.222 5.632 0 4.606 3.738 7.394 8.784 8.796l2.128.59c2.148.59 3.037 1.258 3.037 2.378 0 1.15-.992 1.83-2.628 1.83-2.096 0-4.707-.942-6.66-2.22L8 23.468c2.178 1.492 5.378 2.532 7.747 2.532 2.768 0 5.178-.962 6.84-2.628 1.63-1.63 2.413-3.658 2.413-6.074 0-4.996-3.66-7.558-8.815-8.995l-2.164-.6c-1.89-.53-2.736-1.12-2.736-2.106 0-.962.902-1.61 2.39-1.61 1.763 0 3.866.69 5.485 1.61L21.038 4c-1.815-1.258-4.757-2-7.076-2z"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Stripe Payments</span>
+                    </div>
+
+                    <!-- JavaScript -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="8" fill="#F7DF1E"/>
+                            <text x="50" y="80" fill="black" font-size="44" font-family="sans-serif" font-weight="black">JS</text>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">ES6 JavaScript</span>
+                    </div>
+
+                    <!-- HTML5 -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-orange-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 0h21l-1.91 21.563L12 24l-8.59-2.437L1.5 0zm17.03 8.35L18.8 5.15H5.2l.53 5.95h7.75l-.26 2.87-2.72.73-2.71-.73-.18-2H5.1l.36 4.07 6.54 1.81 6.54-1.81.68-7.67z"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">HTML5</span>
+                    </div>
+
+                    <!-- CSS3 -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-blue-500 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 0h21l-1.91 21.563L12 24l-8.59-2.437L1.5 0zm17.03 5.15H5.2l.53 5.95h11.23l-.36 4.07-4.6 1.25-4.6-1.25-.26-2.91H4.8l.53 5.95 6.67 1.81 6.67-1.81.89-10.02H5.98l-.18-2h12.91z"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">CSS3</span>
+                    </div>
+
+                    <!-- Git -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-orange-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="18" r="3"/>
+                            <circle cx="6" cy="6" r="3"/>
+                            <circle cx="18" cy="6" r="3"/>
+                            <path d="M18 9v6"/>
+                            <path d="M6 9a6 6 0 0 1 6 6"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Git Versioning</span>
+                    </div>
+
+                    <!-- Generative AI -->
+                    <div class="bg-zinc-900/20 border border-zinc-850 rounded p-3 flex items-center gap-3 hover:border-zinc-800 transition-all">
+                        <svg class="w-5 h-5 text-purple-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        </svg>
+                        <span class="text-xs font-semibold text-zinc-300">Generative AI</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Part 2: Core Capabilities -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-accent-emerald">Expertise</h2>
+                    <h3 class="text-lg font-bold text-zinc-100 mt-1">Core Capabilities</h3>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-200 mb-2">Frontend Engineering</h4>
+                        <ul class="text-zinc-400 text-xs space-y-2 leading-relaxed">
+                            <li>• React 19, TypeScript state structures</li>
+                            <li>• Next.js 16 server-side systems</li>
+                            <li>• Tailwind CSS responsive layouts</li>
+                            <li>• Custom component styling sheets</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-200 mb-2">Backend Development</h4>
+                        <ul class="text-zinc-400 text-xs space-y-2 leading-relaxed">
+                            <li>• Express.js REST API engineering</li>
+                            <li>• MongoDB aggregation pipelines</li>
+                            <li>• JWT-based RBAC security layers</li>
+                            <li>• Stripe API transaction checks</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-200 mb-2">Browser Integrations</h4>
+                        <ul class="text-zinc-400 text-xs space-y-2 leading-relaxed">
+                            <li>• Web Speech & SpeechSynthesis APIs</li>
+                            <li>• Web Audio streams local selectors</li>
+                            <li>• Client document object controllers</li>
+                            <li>• LocalStorage offline cache mechanisms</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-200 mb-2">Tools & Environments</h4>
+                        <ul class="text-zinc-400 text-xs space-y-2 leading-relaxed">
+                            <li>• Git control & deployment workflows</li>
+                            <li>• Node.js command tools</li>
+                            <li>• Browser debuggers & network logs</li>
+                            <li>• Vercel serverless host systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section id="timeline" class="py-16 border-b border-zinc-900">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-accent-emerald">Chronology</span>
+                    <h2 class="text-lg font-bold text-zinc-100 mt-1">Developer Timeline</h2>
+                </div>
+                <div class="md:col-span-2 border-l border-zinc-800 pl-6 ml-1 space-y-10">
+                    <div class="relative">
+                        <span class="absolute left-[-31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-950 border-2 border-accent-emerald"></span>
+                        <span class="text-[10px] text-zinc-500 font-mono">Present</span>
+                        <h3 class="text-sm font-bold text-zinc-200 mt-1">Next.js Web Portal Development</h3>
+                        <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">
+                            Architected and deployed the official reunion portal (Illumine 2026) for the Jadavpur University IT department celebrating their silver jubilee, integrating batches directory filters and invitation mail integrations.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-[-31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-950 border-2 border-accent-emerald"></span>
+                        <span class="text-[10px] text-zinc-500 font-mono">2025</span>
+                        <h3 class="text-sm font-bold text-zinc-200 mt-1">Full-Stack E-Commerce Architecture</h3>
+                        <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">
+                            Designed the Zomato Clone (Tomato) project, exploring API security check custom middleware, Stripe checkouts, user role access structures, and coupon aggregation pipelines on MongoDB.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-[-31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-950 border-2 border-zinc-700"></span>
+                        <span class="text-[10px] text-zinc-500 font-mono">2024</span>
+                        <h3 class="text-sm font-bold text-zinc-200 mt-1">Frontend DOM Labs</h3>
+                        <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">
+                            Programmed a portfolio library containing 25 distinct utilities, testing device web speech conversions, interactive local music selectors, stopwatch logs, and forms validations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAMPUS LEADERSHIP SECTION -->
+        <section id="leadership" class="py-16 border-b border-zinc-900">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-accent-emerald">Engagement</span>
+                    <h2 class="text-lg font-bold text-zinc-100 mt-1">Campus Leadership</h2>
+                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">
+                        Roles and activities representing my engagement in university student organizations and technology clubs.
+                    </p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-zinc-900/30 border border-zinc-850 rounded-lg p-5 hover:border-zinc-800 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-accent-emerald">
+                                <i data-lucide="award" class="w-4.5 h-4.5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold text-zinc-200">Logistics Lead</h3>
+                                <p class="text-[10px] text-zinc-500">CodeClub JUSL (Jadavpur University Salt Lake)</p>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-xs leading-relaxed">
+                            Organizing logistics, resource allocation, and operations for coding contests, hackathons, and technical workshops across campus.
+                        </p>
+                    </div>
+
+                    <div class="bg-zinc-900/30 border border-zinc-850 rounded-lg p-5 hover:border-zinc-800 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-blue-400">
+                                <i data-lucide="users" class="w-4.5 h-4.5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold text-zinc-200">PR Team Member</h3>
+                                <p class="text-[10px] text-zinc-500">Jadavpur University Games Society</p>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-xs leading-relaxed">
+                            Coordinating public relations, outreach strategies, and social media presence for university sports tournaments and gaming events.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-accent-emerald">Contact</h2>
+                    <h3 class="text-lg font-bold text-zinc-100 mt-1">Get in Touch</h3>
+                    <p class="text-zinc-400 text-xs mt-3 leading-relaxed">
+                        Currently looking for frontend/full-stack developer opportunities, internships, and collaborations.
+                    </p>
+                </div>
+                <div class="md:col-span-2">
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message logged (demo form submission).');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label for="name" class="text-[10px] font-bold text-zinc-500 uppercase">Your Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" class="w-full bg-zinc-900 border border-zinc-800 rounded px-4 py-2.5 text-xs text-zinc-300 placeholder-zinc-700 focus:border-accent-emerald focus:ring-1 focus:ring-accent-emerald transition-all outline-none">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="email" class="text-[10px] font-bold text-zinc-500 uppercase">Your Email</label>
+                                <input type="email" id="email" required placeholder="john@example.com" class="w-full bg-zinc-900 border border-zinc-800 rounded px-4 py-2.5 text-xs text-zinc-300 placeholder-zinc-700 focus:border-accent-emerald focus:ring-1 focus:ring-accent-emerald transition-all outline-none">
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="message" class="text-[10px] font-bold text-zinc-500 uppercase">Message</label>
+                            <textarea id="message" rows="4" required placeholder="Describe your inquiry..." class="w-full bg-zinc-900 border border-zinc-800 rounded px-4 py-2.5 text-xs text-zinc-300 placeholder-zinc-700 focus:border-accent-emerald focus:ring-1 focus:ring-accent-emerald transition-all outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="px-5 py-2.5 rounded bg-zinc-100 text-zinc-950 font-bold text-xs hover:bg-zinc-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            Send Message <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </form>
+                    
+                    <div class="mt-8 pt-8 border-t border-zinc-900 flex flex-wrap gap-6 text-xs text-zinc-500">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-zinc-650"></i>
+                            <span>krishagarwal.it@gmail.com</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-zinc-650"></i>
+                            <span>Delhi, India</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="github" class="w-4 h-4 text-zinc-650"></i>
+                            <a href="https://github.com/krishjuit" target="_blank" class="hover:text-zinc-300 transition-all">github.com/krishjuit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-900 py-8 bg-zinc-950 text-center text-[10px] text-zinc-600">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; <span id="year"></span> Krish Agarwal. All rights reserved.</p>
+            <p>Built with Tailwind CSS & Vanilla JS. Hosted statically.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PREVIEW MODAL -->
+    <div id="project-modal" class="fixed inset-0 bg-zinc-950/90 backdrop-blur-sm flex items-center justify-center z-[100] opacity-0 pointer-events-none transition-all duration-350">
+        <div class="w-[95%] h-[85%] max-w-4xl bg-zinc-900 border border-zinc-850 rounded-lg shadow-2xl flex flex-col overflow-hidden transform translate-y-6 scale-95 transition-all duration-350">
+            <!-- Modal Header -->
+            <div class="px-5 py-3 bg-zinc-950 border-b border-zinc-850 flex justify-between items-center">
+                <h3 id="modal-project-title" class="text-xs font-bold text-zinc-300 font-mono">Project Preview</h3>
+                <div class="flex items-center gap-2">
+                    <a href="" target="_blank" id="modal-external-link" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-700 transition-all" title="Open in new tab">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <button id="modal-close" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-red-500/50 hover:scale-102 transition-all cursor-pointer" title="Close preview">
+                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Modal Body -->
+            <div class="flex-grow relative bg-white">
+                <div id="modal-loader" class="absolute inset-0 bg-[#09090b] flex flex-col items-center justify-center gap-3 text-zinc-500 z-10 transition-opacity duration-300 pointer-events-none">
+                    <div class="spinner w-8 h-8"></div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider">Loading project dashboard...</p>
+                </div>
+                <iframe src="" id="project-iframe" class="w-full h-full border-none opacity-0 transition-opacity duration-300"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Mini Projects Data Array
+        const miniProjects = [
+            { name: "Age Calculator", category: "utility", url: "./Age Calculator/index.html", desc: "Calculates precise age metrics down to days." },
+            { name: "Calculator", category: "utility", url: "./Calculator/index.html", desc: "Clean standard grid arithmetic tool." },
+            { name: "Circular Progress Bar", category: "ui", url: "./Circular Progress Bar/index.html", desc: "Interactive SVG ring mapping percentage steps." },
+            { name: "Coming Soon Page", category: "ui", url: "./Coming Soon Page/index.html", desc: "Under-construction template with active countdown timers." },
+            { name: "Dark Mode Demo", category: "ui", url: "./Dark Mode/index.html", desc: "Toggles stylesheet variables dynamically." },
+            { name: "Email Subscription", category: "ui", url: "./Email Subscription/index.html", desc: "Newsletter card with mock submit and field validation." },
+            { name: "Form Verification", category: "ui", url: "./Form Verification/index.html", desc: "Registration form checking format constraints live." },
+            { name: "Image BG Changer", category: "ui", url: "./Image Background Change/index.html", desc: "Background toggle controller for custom panels." },
+            { name: "Image Gallery", category: "ui", url: "./Image Gallery/index.html", desc: "Masonry photos viewport with popup cards." },
+            { name: "Mini Calendar", category: "utility", url: "./Mini Calender/index.html", desc: "Self-updating day-month calendar widget." },
+            { name: "Music Player", category: "app", url: "./Music Player/index.html", desc: "Upgraded audio player reading local files." },
+            { name: "Notes App", category: "app", url: "./Notes App/index.html", desc: "Persistent scratchpad managing notes." },
+            { name: "Password Generator", category: "utility", url: "./PassWord Generator/index.html", desc: "Creates randomized codes based on parameters." },
+            { name: "Password Strength", category: "ui", url: "./Password Strength/index.html", desc: "Upgraded security complexity checker and generator." },
+            { name: "Password Hidder", category: "ui", url: "./PassWord Hidder/index.html", desc: "Input switcher between bullets and strings." },
+            { name: "Pop Up Modal", category: "ui", url: "./Pop Up/index.html", desc: "Click-triggered alert overlays." },
+            { name: "QR Code Generator", category: "utility", url: "./QR code Generator/index.html", desc: "Generates scannable QR tags for inputs." },
+            { name: "Quiz App", category: "app", url: "./Quiz APP/index.html", desc: "Multi-choice scoring test game." },
+            { name: "Quote Generator", category: "ui", url: "./Quote Generator/index.html", desc: "Displays random statements with Twitter shares." },
+            { name: "Select Menu", category: "ui", url: "./Select Menu/index.html", desc: "Dropdown UI component with selection feedbacks." },
+            { name: "Stopwatch", category: "utility", url: "./StopWatch/index.html", desc: "High-precision timer logging lap stats." },
+            { name: "Text to Voice", category: "utility", url: "./Text to Voice Convertor/index.html", desc: "Converts inputs to spoken text via Web Speech API." },
+            { name: "ToDo List", category: "app", url: "./ToDo List/index.html", desc: "Task tracking grid with local saves." },
+            { name: "Toast Notification", category: "ui", url: "./Toast Notification/index.html", desc: "Sliding popup alerts giving log status reports." },
+            { name: "Weather App", category: "app", url: "./Weather App/index.html", desc: "Upgraded weather dashboard with fail-safe mock fallback." }
+        ];
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Footer copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu trigger
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileToggle.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+
+        // Close mobile nav menu on links click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Labs Drawer Toggle
+        const toggleLabsBtn = document.getElementById('toggle-labs-btn');
+        const labsDrawer = document.getElementById('labs-drawer');
+        const drawerArrow = document.getElementById('drawer-arrow');
+
+        toggleLabsBtn.addEventListener('click', () => {
+            const isHidden = labsDrawer.classList.contains('hidden');
+            if (isHidden) {
+                labsDrawer.classList.remove('hidden');
+                drawerArrow.style.transform = 'rotate(180deg)';
+                renderLabs();
+            } else {
+                labsDrawer.classList.add('hidden');
+                drawerArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Render Labs Cards
+        const labsGrid = document.getElementById('labs-grid');
+        const searchInput = document.getElementById('labs-search');
+        const filterBtns = document.querySelectorAll('.labs-filter');
+        let currentFilter = 'all';
+
+        function renderLabs() {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            // Filter array
+            const filtered = miniProjects.filter(proj => {
+                const matchesQuery = proj.name.toLowerCase().includes(query) || proj.desc.toLowerCase().includes(query);
+                const matchesFilter = currentFilter === 'all' || proj.category === currentFilter;
+                return matchesQuery && matchesFilter;
+            });
+
+            // Map HTML
+            if (filtered.length === 0) {
+                labsGrid.innerHTML = `
+                    <div class="col-span-full py-8 text-center text-xs text-zinc-600 font-mono">
+                        No components match your search.
+                    </div>
+                `;
+                return;
+            }
+
+            labsGrid.innerHTML = filtered.map(proj => {
+                let badgeClass = "bg-zinc-800 text-zinc-400 border-zinc-700/50";
+                let categoryLabel = "UI Component";
+                if (proj.category === 'utility') {
+                    badgeClass = "bg-emerald-500/5 text-accent-emerald border-emerald-500/10";
+                    categoryLabel = "Utility";
+                } else if (proj.category === 'app') {
+                    badgeClass = "bg-blue-500/5 text-blue-400 border-blue-500/10";
+                    categoryLabel = "App";
+                }
+
+                return `
+                    <div class="bg-zinc-950 border border-zinc-850 p-4 rounded flex flex-col justify-between hover:border-zinc-800 transition-all">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-[9px] font-bold uppercase tracking-widest border px-2 py-0.5 rounded ${badgeClass}">${categoryLabel}</span>
+                                <i data-lucide="cube" class="w-3.5 h-3.5 text-zinc-600"></i>
+                            </div>
+                            <h4 class="text-xs font-bold text-zinc-200 mb-1">${proj.name}</h4>
+                            <p class="text-zinc-500 text-[10px] leading-relaxed mb-4">${proj.desc}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="launch-btn flex-grow py-1.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-300 hover:text-white hover:border-zinc-750 transition-all flex items-center justify-center gap-1 cursor-pointer" data-url="${proj.url}" data-title="${proj.name}">
+                                Launch <i data-lucide="play" class="w-2.5 h-2.5 text-accent-emerald"></i>
+                            </button>
+                            <a href="${proj.url}" target="_blank" class="w-7 h-7 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white hover:border-zinc-750 transition-all" title="Open in new tab"><i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Re-bind Lucide icons
+            lucide.createIcons();
+            
+            // Bind launch event clicks
+            document.querySelectorAll('.launch-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openModal(btn.getAttribute('data-url'), btn.getAttribute('data-title'));
+                });
+            });
+        }
+
+        // Search inputs listener
+        searchInput.addEventListener('input', renderLabs);
+
+        // Filter button listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-zinc-800', 'text-zinc-200');
+                    b.classList.add('bg-zinc-900', 'text-zinc-400');
+                });
+                btn.classList.add('active', 'bg-zinc-800', 'text-zinc-200');
+                btn.classList.remove('bg-zinc-900', 'text-zinc-400');
+                
+                currentFilter = btn.getAttribute('data-labs-filter');
+                renderLabs();
+            });
+        });
+
+        // Iframe Modal previews
+        const projectModal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-project-title');
+        const modalExternalLink = document.getElementById('modal-external-link');
+        const modalCloseBtn = document.getElementById('modal-close');
+        const modalLoader = document.getElementById('modal-loader');
+        const projectIframe = document.getElementById('project-iframe');
+
+        function openModal(url, title) {
+            modalTitle.textContent = `${title} — Local Sandbox`;
+            modalExternalLink.setAttribute('href', url);
+            projectIframe.setAttribute('src', url);
+
+            projectModal.classList.remove('opacity-0', 'pointer-events-none');
+            projectModal.querySelector('div').classList.remove('translate-y-6', 'scale-95');
+            modalLoader.style.opacity = '1';
+            projectIframe.classList.add('opacity-0');
+        }
+
+        projectIframe.addEventListener('load', () => {
+            modalLoader.style.opacity = '0';
+            projectIframe.classList.remove('opacity-0');
+        });
+
+        function closeModal() {
+            projectModal.classList.add('opacity-0', 'pointer-events-none');
+            projectModal.querySelector('div').classList.add('translate-y-6', 'scale-95');
+            projectIframe.setAttribute('src', '');
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

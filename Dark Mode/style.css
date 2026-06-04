@@ -1,0 +1,36 @@
+body{
+    background: #fff;
+}
+
+:root{
+    --primary-color:#edf2fc;
+    --secondary-color:#212121;
+}
+body{
+    background: var(--primary-color);
+}
+.dark-theme{
+    --primary-color:#000106;
+    --secondary-color:#fff;
+}
+.content{
+    padding:10px;
+    margin-right:50px;
+}
+#icon{
+    width: 30px;
+    right:0px;
+    
+}
+h1{
+    background: var(--secondary-color);
+    color:blue;
+}
+h2{
+    background: cyan;
+    color: var(--primary-color);
+}
+h3{
+    background: black;
+    color:rgb(155, 113, 113)
+}
